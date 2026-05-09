@@ -18,5 +18,24 @@
         <li class="nav-item"><a class="nav-link text-white" href="login.html">Giriş</a></li>
         <li class="nav-item"><a class="nav-link text-white" href="iletisim.html">İletişim</a></li>
     </ul>
+    <main class="container mt-5">
+    <h2>Öğrenci Giriş Sistemi</h2>
+    
+    <form id="loginForm" action="login.php" method="POST">
+        
+        <div class="mb-3">
+            <label for="email" class="form-label">Öğrenci E-posta Adresi:</label>
+            <input type="email" id="email" name="kullanici_mail" class="form-control" placeholder="örn: b2412100001@sakarya.edu.tr">
+        </div>
+
+        <div class="mb-3">
+            <label for="sifre" class="form-label">Şifre (Öğrenci Numaranız):</label>
+            <input type="password" id="sifre" name="kullanici_sifre" class="form-control" placeholder="örn: b2412100001">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Giriş Yap</button>
+        
+    </form>
+    </main>
     </body>
 </html>
