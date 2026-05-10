@@ -18,5 +18,64 @@
         <li class="nav-item"><a class="nav-link text-white" href="login.html">Giriş</a></li>
         <li class="nav-item"><a class="nav-link text-white" href="iletisim.html">İletişim</a></li>
     </ul>
+    <main class="container mt-5">
+
+        <form action="iletisim_sonuc.php" method="POST" id="iletisimFormu">
+
+    <div class="mb-3">
+    <label for="isimSoyad" class="form-label">İsim Soyad:</label>
+        <input type="text" id="isimSoyad" name="KullaniciIsimSoyadi" class="form-control">
+        </div>
+
+        <div class="mb-3">
+    <label for="email" class="form-label">E-posta Adresi:</label>
+    <input type="email" id="email" name="KullaniciEmail" class="form-control">
+        </div>
+
+        <div class="mb-3">
+    <label class="form-label d-block">Cinsiyet:</label>
+
+    <input class="form-check-input" type="radio" name="cinsiyet" id="erkek" value="Erkek">
+    <label class="form-check-label" for="erkek">Erkek</label>
+
+    <input class="form-check-input" type="radio" name="cinsiyet" id="kadin" value="Kadın">
+    <label class="form-check-label" for="kadin">Kadın</label>
+        </div>
+
+        <div class="mb-3">
+    <label for="ulke" class="form-label">Nerelisiniz:</label>
+    <select name="kullaniciUlke" id="ulke" class="form-select">
+        <option value="" selected disabled>Lütfen bir ülke seçiniz</option>
+        <option value="Türkiye">Türkiye</option>
+        <option value="Suriye">Suriye</option>
+        <option value="Almanya">Almanya</option>
+        <option value="Suudi Arabistan">Suudi Arabistan</option>
+        <option value="İspanya">İspanya</option>
+    </select>
+    </div>
+
+    <div class="mb-3">
+    <label class="form-label d-block">Mesaj konusu(Birden fazla seçebilirsiniz):</label>
+
+        <input class="form-check-input" type="checkbox" name="bildirim_konulari[]" id="secim1" value="Site Hakkında">
+        <label class="form-check-label" for="secim1">Site hakkında</label>
+
+        <input class="form-check-input" type="checkbox" name="bildirim_konulari[]" id="secim2" value="Bölümüm Hakkında">
+        <label class="form-check-label" for="secim2">Bölümüm hakkında</label>
+
+        <input class="form-check-input" type="checkbox" name="bildirim_konulari[]" id="secim3" value="Şehrim Hakkında">
+        <label class="form-check-label" for="secim3">Şehrim hakkında</label>
+
+        <input class="form-check-input" type="checkbox" name="bildirim_konulari[]" id="secim4" value="Proje Hakkında">
+        <label class="form-check-label" for="secim4">Proje hakkında</label>
+    </div>
+
+    <div class="mb-3">
+        <label for="mesaj" class="form-label">Mesajınız:</label>
+        <textarea class="form-control" id="mesaj" name="kullaniciMesaj" rows="5" placeholder="Mesajınızı buraya yazınız..."></textarea>
+    </div>
+
+        </form>
+        </main>
     </body>
 </html>
