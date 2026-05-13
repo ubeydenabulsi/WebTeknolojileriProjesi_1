@@ -23,11 +23,11 @@
     <h1>Öğrenci Giriş Sistemi</h1>
     <hr>
     
-    <form id="loginForm" action="login.php" method="POST">
+    <form id="loginForm" action="login.php" method="POST" onsubmit="return kontrolEt()">
         
         <div class="mb-3">
             <label for="email" class="form-label">Öğrenci E-posta Adresi:</label>
-            <input type="email" id="email" name="kullanici_mail" class="form-control" placeholder="örn: b2412100001@sakarya.edu.tr">
+            <input type="text" id="email" name="kullanici_mail" class="form-control" placeholder="örn: b2412100001@sakarya.edu.tr">
         </div>
 
         <div class="mb-3">
@@ -39,5 +39,27 @@
         
     </form>
     </main>
+
+<script>
+    function kontrolEt() {
+        let mail = document.getElementById("email").value;
+        let sifre = document.getElementById("sifre").value;
+
+      
+        if (mail == "" || sifre == "") {
+            alert("Lütfen e-posta ve şifre alanını boş bırakmayın!");
+            return false;
+        }
+
+      
+        if (mail.indexOf("@") == -1) {
+            alert("E-posta adresinizi doğru yazdığınızdan emin olun!");
+            return false;
+        }
+
+        return true; 
+    }
+</script>
+
     </body>
 </html>

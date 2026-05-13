@@ -23,31 +23,38 @@
         <h1>Benimle iletişime geçiniz:</h1>
         <hr>
 
+        <div id="app">
+
         <form action="iletisim_sonuc.php" method="POST" id="iletisimFormu">
 
     <div class="mb-3">
     <label for="isimSoyad" class="form-label">İsim Soyad:</label>
-        <input type="text" id="isimSoyad" name="KullaniciIsimSoyadi" class="form-control">
+        <input type="text" id="isimSoyad" name="KullaniciIsimSoyadi" class="form-control" v-model="isim">
         </div>
 
         <div class="mb-3">
     <label for="email" class="form-label">E-posta Adresi:</label>
-    <input type="email" id="email" name="KullaniciEmail" class="form-control">
+    <input type="email" id="email" name="KullaniciEmail" class="form-control" v-model="email">
         </div>
+
+        <div class="mb-3">
+                    <label for="telefon" class="form-label">Telefon Numarası:</label>
+                    <input type="text" id="telefon" name="KullaniciTelefon" class="form-control" v-model="telefon">
+                </div>
 
         <div class="mb-3">
     <label class="form-label d-block">Cinsiyet:</label>
 
-    <input class="form-check-input" type="radio" name="cinsiyet" id="erkek" value="Erkek">
+    <input class="form-check-input" type="radio" name="cinsiyet" id="erkek" value="Erkek" v-model="cinsiyet">
     <label class="form-check-label" for="erkek">Erkek</label>
 
-    <input class="form-check-input" type="radio" name="cinsiyet" id="kadin" value="Kadın">
+    <input class="form-check-input" type="radio" name="cinsiyet" id="kadin" value="Kadın" v-model="cinsiyet">
     <label class="form-check-label" for="kadin">Kadın</label>
         </div>
 
         <div class="mb-3">
     <label for="ulke" class="form-label">Nerelisiniz:</label>
-    <select name="kullaniciUlke" id="ulke" class="form-select">
+    <select name="kullaniciUlke" id="ulke" class="form-select" v-model="ulke">
         <option value="" selected disabled>Lütfen bir ülke seçiniz</option>
         <option value="Türkiye">Türkiye</option>
         <option value="Suriye">Suriye</option>
@@ -60,25 +67,147 @@
     <div class="mb-3">
     <label class="form-label d-block">Mesaj konusu(Birden fazla seçebilirsiniz):</label>
 
-        <input class="form-check-input" type="checkbox" name="bildirim_konulari[]" id="secim1" value="Site Hakkında">
+        <input class="form-check-input" type="checkbox" name="bildirim_konulari[]" id="secim1" value="Site Hakkında" v-model="konular">
         <label class="form-check-label" for="secim1">Site hakkında</label>
 
-        <input class="form-check-input" type="checkbox" name="bildirim_konulari[]" id="secim2" value="Bölümüm Hakkında">
+        <input class="form-check-input" type="checkbox" name="bildirim_konulari[]" id="secim2" value="Bölümüm Hakkında" v-model="konular">
         <label class="form-check-label" for="secim2">Bölümüm hakkında</label>
 
-        <input class="form-check-input" type="checkbox" name="bildirim_konulari[]" id="secim3" value="Şehrim Hakkında">
+        <input class="form-check-input" type="checkbox" name="bildirim_konulari[]" id="secim3" value="Şehrim Hakkında" v-model="konular">
         <label class="form-check-label" for="secim3">Şehrim hakkında</label>
 
-        <input class="form-check-input" type="checkbox" name="bildirim_konulari[]" id="secim4" value="Proje Hakkında">
+        <input class="form-check-input" type="checkbox" name="bildirim_konulari[]" id="secim4" value="Proje Hakkında" v-model="konular">
         <label class="form-check-label" for="secim4">Proje hakkında</label>
     </div>
 
     <div class="mb-3">
         <label for="mesaj" class="form-label">Mesajınız:</label>
-        <textarea class="form-control" id="mesaj" name="kullaniciMesaj" rows="5" placeholder="Mesajınızı buraya yazınız..."></textarea>
+        <textarea class="form-control" id="mesaj" name="kullaniciMesaj" rows="5" placeholder="Mesajınızı buraya yazınız..." v-model="mesaj"></textarea>
     </div>
-    
-        </form>
+
+    <div class="mb-5 mt-4">
+                    <button type="button" class="btn btn-primary me-2" onclick="kontrolNative()">Gönder (Native JS)</button>
+                    <button type="button" class="btn btn-success me-2" @click="kontrolVue">Gönder (Vue.js)</button>
+                    <button type="reset" class="btn btn-secondary" @click="temizle">Temizle</button>
+                </div>
+
+                </form>
+                </div>
         </main>
+
+                <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script>
+     
+        function kontrolNative() {
+            let isimKutusu = document.getElementById('isimSoyad').value;
+            let emailKutusu = document.getElementById('email').value;
+            let telefonKutusu = document.getElementById('telefon').value;
+            let ulkeKutusu = document.getElementById('ulke').value;
+            let mesajKutusu = document.getElementById('mesaj').value;
+            
+     
+            let seciliCinsiyet = document.querySelector('input[name="cinsiyet"]:checked');
+            
+  
+            let seciliKonular = document.querySelectorAll('input[name="bildirim_konulari[]"]:checked');
+
+   
+            if (isimKutusu == "" || emailKutusu == "" || telefonKutusu == "" || ulkeKutusu == "" || mesajKutusu == "") {
+                alert("[JS] Lütfen boşluk bırakmadığınızdan emin olunuz!");
+                return;
+            }
+
+
+            if (seciliCinsiyet == null) {
+                alert("[JS] Lütfen cinsiyetinizi seçiniz!");
+                return;
+            }
+
+       
+            if (seciliKonular.length == 0) {
+                alert("[JS] Lütfen en az bir adet mesaj konusu seçiniz!");
+                return;
+            }
+
+       
+            if (emailKutusu.indexOf("@") == -1) {
+                alert("[JS] E-posta adresinizi doğru yazdığınızdan emin olun!");
+                return;
+            }
+
+     
+            let rakamMi = /^[0-9]+$/.test(telefonKutusu);
+            if (rakamMi == false) {
+                alert("[JS] Telefon numarası sadece sayılardan oluşmalıdır!");
+                return;
+            }
+
+            document.getElementById('iletisimFormu').submit();
+        }
+
+  
+        const app = Vue.createApp({
+            data() {
+                return {
+                    isim: '',
+                    email: '',
+                    telefon: '',
+                    cinsiyet: '',
+                    ulke: '',
+                    konular: [],
+                    mesaj: ''
+                }
+            },
+            methods: {
+                kontrolVue() {
+   
+                    if (this.isim == "" || this.email == "" || this.telefon == "" || this.mesaj == "") {
+                        alert("[Vue] Lütfen boşluk bırakmadığınızdan emin olunuz!");
+                        return;
+                    }
+                    if (this.cinsiyet == "") {
+                        alert("[Vue] Lütfen cinsiyet seçiniz!");
+                        return;
+                    }
+                    if (this.ulke == "") {
+                        alert("[Vue] Lütfen ülke seçiniz!");
+                        return;
+                    }
+                    if (this.konular.length == 0) {
+                        alert("[Vue] Lütfen en az bir mesaj konusu seçiniz!");
+                        return;
+                    }
+
+   
+                    if (this.email.includes("@") == false) {
+                        alert("[Vue] E-posta adresinizi doğru yazdığınızdan emin olun!");
+                        return;
+                    }
+
+   
+                    let rakamMi = /^[0-9]+$/.test(this.telefon);
+                    if (rakamMi == false) {
+                        alert("[Vue] Telefon numarası sadece sayılardan oluşmalıdır!");
+                        return;
+                    }
+
+                    document.getElementById('iletisimFormu').submit();
+                },
+                temizle() {
+                    this.isim = '';
+                    this.email = '';
+                    this.telefon = '';
+                    this.cinsiyet = '';
+                    this.ulke = '';
+                    this.konular = [];
+                    this.mesaj = '';
+                }
+            }
+        });
+        app.mount('#app');
+    </script>
+    
+        
     </body>
 </html>

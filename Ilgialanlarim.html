@@ -19,5 +19,49 @@
         <li class="nav-item"><a class="nav-link text-white" href="login.html">Giriş</a></li>
         <li class="nav-item"><a class="nav-link text-white" href="iletisim.html">İletişim</a></li>
     </ul>
+
+<main class="container mt-5 text-center">
+        <h1>Dizi Arama (API)</h1>
+        <hr>
+
+        <div class="mt-4 mb-5">
+            <input type="text" id="aramaKutusu" placeholder="Dizi adı yazın (Örn: Game Of Thrones, Dark vb.)" class="form-control w-50 mx-auto mb-3">
+            <button class="btn btn-primary" onclick="Ara()">Ara</button>
+        </div>
+
+        <div>
+            <h2 id="diziIsmi" class="text-danger"></h2>
+            <h4 id="diziDil" class="text-secondary"></h4>
+            <h4 id="diziYil" class="text-secondary"></h4>
+            <h4 id="diziPuan" class="text-secondary"></h4>
+            <img id="diziResmi" src="" alt="" class="mt-3 shadow rounded">
+            <div id="diziOzeti" class="mt-4 text-start px-5 lead"></div>
+        </div>
+    </main>
+
+    <script>
+        function Ara() {
+          
+            let kelime = document.getElementById("aramaKutusu").value;
+
+          
+        fetch("https://api.tvmaze.com/search/shows?q=" + kelime)
+        .then(cevap => cevap.json())
+        .then(veri => {
+        
+            let dizi = veri[0].show;
+
+       
+            document.getElementById("diziIsmi").innerHTML = dizi.name;
+            document.getElementById("diziDil").innerHTML = "Dili: " + dizi.language;
+            document.getElementById("diziYil").innerHTML = "Çıkış Yılı: " + (dizi.premiered ? dizi.premiered.substring(0,4) : "Bilinmiyor");
+            document.getElementById("diziPuan").innerHTML = "Puanı: " + (dizi.rating.average ? dizi.rating.average.toFixed(1) : "Bilinmiyor");
+                
+            document.getElementById("diziResmi").src = dizi.image.medium;
+            document.getElementById("diziOzeti").innerHTML = dizi.summary ? dizi.summary : "Bu dizi için henüz bir özet girilmemiş.";  
+            });
+        }
+    </script>
+<br> <br>
     </body>
 </html>
