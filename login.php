@@ -1,6 +1,6 @@
 <?php
     
-    $dogru_mail = "b251210558@sakarya.edu.tr"; 
+    $dogru_mail = "b251210558@ogr.sakarya.edu.tr"; 
     $dogru_sifre = "b251210558";
 
     $gelen_mail = $_POST['kullanici_mail'];
@@ -9,7 +9,7 @@
     if ($gelen_mail == $dogru_mail && $gelen_sifre == $dogru_sifre) {
        
         echo "<h1 style='color: green;'>Giriş Başarılı!</h1>";
-        echo "<h2>Hoşgeldiniz</h2>";
+        echo "<h2>Hoşgeldiniz $gelen_sifre .</h2>";
     } 
     else {
      
