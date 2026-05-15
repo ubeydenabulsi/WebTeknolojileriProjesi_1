@@ -1,0 +1,111 @@
+
+.hero-section {
+    height: 80vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('img/ulleo-jasmin-3617678.jpg') center/cover;
+    display: flex; justify-content: center; align-items: center; text-align: center; color: white;
+}
+
+.hero-title { font-size: 6rem;
+     font-weight: bold;
+      color: #d4a373;
+       margin: 0; }
+
+.hero-subtitle { font-size: 1.5rem;
+     margin-top: 10px;
+      text-transform: uppercase; }
+
+.hero-divider { width: 100px;
+     height: 2px;
+      background: #d4a373;
+       margin: 20px auto; }
+
+
+.carousel-inner img { height: 750px;
+     object-fit: cover;
+      border-radius: 15px; }
+#samSlider { box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+     border-radius: 15px;
+      overflow: hidden; }
+
+section h3, .bronz-baslik { 
+    color: #d4a373;
+     margin: 40px 0 20px;
+      font-weight: bold; 
+    border-left: 5px solid #d4a373;
+     padding-left: 15px; }
+
+.lead { line-height: 1.8;
+     margin-bottom: 25px; }
+
+
+#ana-menu .nav-link:hover { color: #d4a373 !important; }
+body { background-color: #f4f7f6; }
+
+.login-wrapper { display: flex;
+     justify-content: center;
+      align-items: center;
+       min-height: 80vh; }
+
+.login-card { width: 100%; max-width: 450px;
+     border: none;
+      border-radius: 15px; }
+
+
+.btn-primary { 
+    background-color: #212529 !important; 
+    border: none !important; 
+    color: white !important;
+    transition: 0.3s;
+}
+
+.login-card .btn-primary {
+    width: 100%;
+}
+
+.btn-primary:hover { 
+    background-color: #d4a373 !important; 
+}
+
+@keyframes süzülerekGeliş {
+    from { opacity: 0;
+         transform: translateY(-20px); }
+    to { opacity: 1;
+         transform: translateY(0); }
+}
+
+
+.animasyon-baslat {
+    animation: süzülerekGeliş 1s ease-out forwards;
+}
+
+
+
+.lead a {
+    color: #d4a373;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+
+.ana-hero {
+    height: calc(100vh - 56px) !important;
+}
+
+
+.ana-sayfa-metin {
+    color: #d4a373;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-top: 20px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.ana-hero {
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('img/nasa-earth.jpg') !important;
+}
+
+
